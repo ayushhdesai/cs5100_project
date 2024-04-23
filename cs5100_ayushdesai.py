@@ -19,7 +19,7 @@ from tensorflow.keras import backend as K
 logger = tf.get_logger()
 from tensorflow.keras.utils import plot_model
 from sklearn.model_selection import train_test_split
-from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction
+from nltk.translate.bleu_score import corpus_bleu, sentence_bleu, SmoothingFunction
 
 ai_df = pd.read_csv('deu.txt',delimiter='\t',header=None)
 ai_df.columns = ['English','German','LangSource']
@@ -242,13 +242,11 @@ plt.ylabel('Accuracy')
 plt.title('Accuracy  Comparison for Different Learning Rates')
 plt.legend()
 
-from nltk.translate.bleu_score import corpus_bleu
-
 def evaluate_bleu_score(model, X_test, y_test, encoder_model, decoder_model, german_token):
     predictions, references = [], []
     for input_seq, target_seq in zip(X_test, y_test):
         # Decoding the sequence
-        decoded_sentence = decode_sequences(input_seq.reshape(1, -1), model, encoder_model, decoder_model, german_token)
+        decoded_sentence = decode_ sequences(input_seq.reshape(1, -1), model, encoder_model, decoder_model, german_token)
         # Split decoded sentence into words, removing the tokens
         decoded_words = decoded_sentence.split()
         if '<END>' in decoded_words:
@@ -261,6 +259,5 @@ def evaluate_bleu_score(model, X_test, y_test, encoder_model, decoder_model, ger
     bleu_score = corpus_bleu(references, predictions)
     return bleu_score
 
-# Example of evaluating BLEU score for one model
 bleu_score_adam = evaluate_bleu_score(model_adam, X_test, y_test, encoder_model, decoder_model, german_token)
 print("BLEU Score for Model Adam:", bleu_score_adam)

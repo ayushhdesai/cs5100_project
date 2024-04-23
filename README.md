@@ -3,8 +3,8 @@
 ## Title - Navigating Multilingual text with AI
 
 Members:
-- Ayush Desai - desai.ayus@northeastern.edu (002762006)
-- Harsh Shah - shah.harsh8@northeastern.edu (002831531)
+- Ayush Desai - desai.ayus@northeastern.edu
+- Harsh Shah - shah.harsh8@northeastern.edu
 
 Problem description: 
 
